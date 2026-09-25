@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>جزوه علوم و کار و فناوری</title>
+
+    <!-- فونت‌های جذاب -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Baloo Bhaijaan 2", "Vazirmatn", sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(0, 200, 255, 0.18), transparent 25%),
+                radial-gradient(circle at 90% 20%, rgba(120, 70, 255, 0.20), transparent 25%),
+                linear-gradient(135deg, #07111f, #0c1830 50%, #101b35);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* هدر */
+
+        header {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .school-icon {
+            font-size: 65px;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        header h1 {
+            font-size: clamp(35px, 6vw, 65px);
+            font-weight: 800;
+            background: linear-gradient(90deg, #55eaff, #9c7bff, #ff6bd6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(90, 220, 255, .2);
+        }
+
+        header p {
+            margin-top: 10px;
+            color: #b9c8df;
+            font-size: 20px;
+        }
+
+        /* منوی اصلی */
+
+        .menu {
+            max-width: 1000px;
+            margin: 20px auto 40px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .menu-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 35px;
+            cursor: pointer;
+            min-height: 180px;
+
+            background: rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.13);
+            backdrop-filter: blur(15px);
+
+            transition: .35s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(95,220,255,.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,.35);
+        }
+
+        .menu-card .icon {
+            font-size: 55px;
+        }
+
+        .menu-card h2 {
+            margin-top: 10px;
+            font-size: 32px;
+        }
+
+        .menu-card p {
+            color: #aebdd3;
+            font-size: 17px;
+        }
+
+        .science-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 190, 255, .17),
+                    rgba(85, 80, 255, .12)
+                );
+        }
+
+        .technology-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 150, 50, .16),
+                    rgba(255, 70, 140, .12)
+                );
+        }
+
+        /* محتوا */
+
+        .content {
+            max-width: 1000px;
+            margin: auto;
+            padding: 0 20px 50px;
+        }
+
+        .page {
+            display: none;
+            animation: appear .5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 15px;
+
+            background: rgba(255,255,255,.08);
+            color: white;
+
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+        }
+
+        .back:hover {
+            background: rgba(255,255,255,.15);
+        }
+
+        /* کارت علوم */
+
+        .science-header {
+            text-align: center;
+            padding: 35px 20px;
+            border-radius: 30px;
+            background: rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.13);
+            backdrop-filter: blur(15px);
+            margin-bottom: 25px;
+        }
+
+        .science-header h1 {
+            font-size: 45px;
+            color: #65eaff;
+        }
+
+        .teacher {
+            margin-top: 10px;
+            font-size: 22px;
+            color: #d5dff0;
+        }
+
+        .teacher strong {
+            color: #ff9ee9;
+        }
+
+        .bismillah {
+            margin-top: 25px;
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .lesson-title {
+            margin-top: 10px;
+            font-size: 24px;
+            color: #9edfff;
+        }
+
+        /* درس‌ها */
+
+        .lesson {
+            margin-bottom: 25px;
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background: rgba(255,255,255,.065);
+            border: 1px solid rgba(255,255,255,.11);
+
+            box-shadow: 0 15px 35px rgba(0,0,0,.18);
+        }
+
+        .lesson-number {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            background: linear-gradient(90deg,#00bfff,#716cff);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .lesson h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #71eaff;
+        }
+
+        .lesson h3 {
+            margin-top: 20px;
+            margin-bottom: 8px;
+            color: #ff9fdd;
+            font-size: 23px;
+        }
+
+        .lesson p {
+            color: #d7e0ef;
+            font-size: 18px;
+            line-height: 2.1;
+        }
+
+        .lesson ul {
+            padding-right: 25px;
+            color: #d7e0ef;
+            font-size: 18px;
+            line-height: 2;
+        }
+
+        .lesson li::marker {
+            color: #61e8ff;
+        }
+
+        .highlight {
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-right: 4px solid #64eaff;
+            background: rgba(50,200,255,.06);
+            border-radius: 10px;
+            line-height: 2;
+        }
+
+        /* SOON */
+
+        .soon-page {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .soon-box {
+            padding: 70px 50px;
+            border-radius: 35px;
+            background: rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.15);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 70px rgba(0,0,0,.35);
+        }
+
+        .soon-box .rocket {
+            font-size: 70px;
+            animation: float 2s infinite;
+        }
+
+        .soon-box h1 {
+            font-family: Arial, sans-serif;
+            font-size: 75px;
+            letter-spacing: 7px;
+            margin: 20px 0 10px;
+
+            background: linear-gradient(
+                90deg,
+                #ff7ad9,
+                #9c7bff,
+                #55eaff
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .soon-box p {
+            color: #bdc8da;
+            font-size: 20px;
+        }
+
+        /* فوتر */
+
+        footer {
+            text-align: center;
+            padding: 45px 20px 35px;
+            margin-top: 30px;
+
+            border-top: 1px solid rgba(255,255,255,.1);
+
+            color: #b6c2d5;
+        }
+
+        footer .creator {
+            font-size: 22px;
+        }
+
+        footer .name {
+            display: block;
+            margin-top: 10px;
+
+            font-size: 35px;
+            font-weight: 800;
+
+            background: linear-gradient(
+                90deg,
+                #55eaff,
+                #ff76d9,
+                #a47aff
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .signature {
+            margin-top: 18px;
+            font-family: "Brush Script MT", "Segoe Script", cursive;
+            font-size: 50px;
+            color: #fff;
+            transform: rotate(-5deg);
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(255,255,255,.25);
+        }
+
+        /* موبایل */
+
+        @media(max-width:700px) {
+
+            .menu {
+                grid-template-columns: 1fr;
+            }
+
+            .science-header h1 {
+                font-size: 35px;
+            }
+
+            .lesson {
+                padding: 22px;
+            }
+
+            .lesson h2 {
+                font-size: 26px;
+            }
+
+            .lesson p,
+            .lesson ul {
+                font-size: 16px;
+            }
+
+            .soon-box {
+                padding: 50px 25px;
+            }
+
+            .soon-box h1 {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="school-icon">🎓</div>
+
+    <h1>دفتر هوشمند درسی</h1>
+
+    <p>
+        جزوه‌های مدرسه در یک جای ساده و زیبا
+    </p>
+</header>
+
+
+<!-- منوی اصلی -->
+
+<section class="menu">
+
+    <div class="menu-card science-card" onclick="showPage('science')">
+
+        <div class="icon">🔬</div>
+
+        <h2>علوم</h2>
+
+        <p>
+            جزوه علوم پایه نهم
+        </p>
+
+    </div>
+
+
+    <div class="menu-card technology-card" onclick="showPage('technology')">
+
+        <div class="icon">💻</div>
+
+        <h2>کار و فناوری</h2>
+
+        <p>
+            مطالب این بخش به‌زودی اضافه می‌شود
+        </p>
+
+    </div>
+
+</section>
+
+
+<main class="content">
+
+    <!-- صفحه علوم -->
+
+    <section id="science" class="page">
+
+        <button class="back" onclick="goHome()">
+            ← بازگشت به صفحه اصلی
+        </button>
+
+
+        <div class="science-header">
+
+            <h1>🔬 علوم</h1>
+
+            <div class="teacher">
+                استاد : <strong>آقای گوهری</strong>
+            </div>
+
+            <div class="bismillah">
+                به نام خدا
+            </div>
+
+            <div class="lesson-title">
+                جزوه علوم نهم
+            </div>
+
+        </div>
+
+
+        <!-- خزندگان -->
+
+        <article class="lesson">
+
+            <span class="lesson-number">صفحه 67</span>
+
+            <h2>🦎 ویژگی خزندگان</h2>
+
+            <ul>
+                <li>خشکی‌زی هستند.</li>
+
+                <li>
+                    دارای پوست ضخیم با پولک‌های سخت یا صفحات استخوانی هستند.
+                </li>
+
+                <li>
+                    دویست میلیون سال بزرگ‌ترین گروه جانوران را تشکیل می‌دادند.
+                </li>
+
+                <li>
+                    تنوع خزندگان امروزی نسبت به گذشته کمتر شده است.
+                </li>
+            </ul>
+
+
+            <h3>انواع خزندگان</h3>
+
+            <p>
+                مارها، لاک‌پشت‌ها، سوسمارها، کروکودیل‌ها و ...
+            </p>
+
+
+            <h3>ویژگی مارها 🐍</h3>
+
+            <ul>
+                <li>از ویژگی مهم مارها نداشتن دست و پا است.</li>
+
+                <li>
+                    بعضی از مارها در خشکی و بعضی در آب زندگی می‌کنند.
+                </li>
+
+                <li>
+                    گونه‌های سمی و غیرسمی دارند.
+                </li>
+
+                <li>
+                    با تغذیه از حشرات و موش‌ها در کنترل جمعیت آن‌ها مؤثر هستند.
+                </li>
+
+                <li>
+                    از سم مارها برای تهیه بعضی از داروها مانند داروهای قلبی،
+                    ضدخونریزی و سرطان استفاده می‌شود.
+                </li>
+            </ul>
+
+
+            <h3>ویژگی لاک‌پشت‌ها 🐢</h3>
+
+            <ul>
+                <li>انواع خشکی‌زی و دریازی دارند.</li>
+
+                <li>
+                    از نشانه‌های بارز آن‌ها سنگینی و حرکت کُند آن‌هاست.
+                </li>
+
+                <li>
+                    دارای لاک سخت و محکمی هستند که بخشی از اسکلت آن‌هاست.
+                </li>
+            </ul>
+
+
+            <h3>ویژگی سوسمارها 🦎</h3>
+
+            <ul>
+                <li>
+                    انواع سوسمارها مانند مارمولک و آفتاب‌پرست.
+                </li>
+
+                <li>
+                    از حشرات تغذیه می‌کنند.
+                </li>
+
+                <li>
+                    در کنترل جمعیت حشرات دخالت دارند.
+                </li>
+            </ul>
+
+        </article>
+
+
+        <!-- پستانداران -->
+
+        <article class="lesson">
+
+            <span class="lesson-number">صفحه 69</span>
+
+            <h2>🐘 پستانداران</h2>
+
+            <ul>
+                <li>
+                    پستانداران از بزرگ‌ترین گروه مهره‌داران هستند.
+                </li>
+
+                <li>
+                    دارای غدد شیری هستند.
+                </li>
+
+                <li>
+                    در همه جای کره زمین یافت می‌شوند.
+                </li>
+
+                <li>
+                    بدن آن‌ها از مو یا پشم پوشیده شده است و عایق خوبی برای آن‌هاست.
+                </li>
+
+                <li>
+                    دستگاه‌های بدنی آن‌ها، به‌ویژه دستگاه عصبی و مناطقی که با
+                    هوش، حافظه و هماهنگی عضلات مربوط است، توسعه بیشتری نسبت
+                    به دیگر جانداران یافته است.
+                </li>
+            </ul>
+
+
+            <div class="highlight">
+
+                <strong>غدد شیری:</strong>
+
+                اندامی هستند که مایعی مغذی به نام شیر تولید می‌کنند.
+
+            </div>
+
+
+            <h3>
+                پستانداران بر اساس چگونگی پرورش جنین و نوزاد
+            </h3>
+
+            <ol>
+                <li>تخم‌گذار</li>
+                <li>کیسه‌دار</li>
+                <li>جفت‌دار</li>
+            </ol>
+
+
+            <h3>ویژگی پستانداران تخم‌گذار</h3>
+
+            <p>
+                پلاتی‌پوس (نوک اردکی) از پستاندارانی است که در آب زندگی می‌کند،
+                کنار آب لانه می‌سازد و تخم می‌گذارد. نوزاد پستانداران تخم‌گذار
+                پس از خروج از تخم از شیر تغذیه می‌کند.
+            </p>
+
+
+            <h3>ویژگی پستانداران کیسه‌دار</h3>
+
+            <p>
+                کانگورو از پستانداران کیسه‌دار است که نوزاد آن به صورت نارس
+                متولد می‌شود و سپس به درون کیسه مادر خود می‌خزد که در آن
+                غدد شیری وجود دارد. نوزاد از شیر تغذیه می‌کند تا مراحل رشد
+                و نمو آن کامل شود.
+            </p>
+
+        </article>
+
+
+        <!-- زنجیره غذایی -->
+
+        <article class="lesson">
+
+            <span class="lesson-number">صفحه 72</span>
+
+            <h2>🌱 جانداران تولیدکننده و مصرف‌کننده</h2>
+
+            <h3>جانداران تولیدکننده</h3>
+
+            <p>
+                اولین حلقه هر زنجیره غذایی، جانداری است که از مواد معدنی،
+                مواد آلی می‌سازد. این جانداران را تولیدکننده می‌گویند.
+            </p>
+
+
+            <h3>جانداران مصرف‌کننده</h3>
+
+            <p>
+                حلقه‌های بعدی هر زنجیره غذایی، جاندارانی هستند که نمی‌توانند
+                از مواد معدنی، مواد آلی تولید کنند؛ به آن‌ها مصرف‌کننده می‌گویند.
+            </p>
+
+
+            <div class="highlight">
+
+                حدود ۱۰ درصد ماده و انرژی از یک تراز غذایی به تراز دیگر منتقل می‌شود.
+
+            </div>
+
+
+            <h3>تجزیه‌کنندگان</h3>
+
+            <p>
+                بعضی مصرف‌کنندگان در بوم‌سازگان نقش تجزیه‌کنندگی دارند.
+                قارچ‌ها و باکتری‌ها نقش مهمی در تجزیه بقایای جانداران دارند.
+                آن‌ها مولکول‌های آلی را تا حد تشکیل مولکول‌های سازنده آن‌ها
+                مانند کربن‌دی‌اکسید، آب، گازهای گوگرددار و نیتروژن‌دار تجزیه
+                می‌کنند و سبب برگشت آن‌ها به خاک، آب و هوا می‌شوند.
+            </p>
+
+        </article>
+
+
+        <!-- روابط جانداران -->
+
+        <article class="lesson">
+
+            <span class="lesson-number">صفحه 73</span>
+
+            <h2>🌿 رابطه‌های جانداران در هر بوم‌سازگان</h2>
+
+            <ul>
+                <li>همزیستی</li>
+                <li>شکار و شکارچی</li>
+                <li>رقابت</li>
+            </ul>
+
+
+            <h3>همزیستی و انواع ارتباط‌های آن</h3>
+
+            <ul>
+                <li>همسفرگی</li>
+                <li>همیاری</li>
+                <li>انگلی</li>
+            </ul>
+
+
+            <h3>همسفرگی</h3>
+
+            <p>
+                در همسفرگی یک جانور سود می‌برد، در حالی که جانور دیگر
+                نه سود می‌برد و نه زیان.
+            </p>
+
+
+            <h3>همیاری</h3>
+
+            <p>
+                در همیاری هر دو جانور سود می‌برند.
+            </p>
+
+
+            <h3>انگلی</h3>
+
+            <p>
+                در انگلی میزبان ضرر می‌کند و جانوری که درون یا روی بدن
+                میزبان زندگی می‌کند سود می‌برد.
+            </p>
+
+
+            <h3>🌱 گلسنگ</h3>
+
+            <p>
+                گاهی رابطه همزیستی دو جاندار به تشکیل موجودی جدید می‌انجامد.
+                گلسنگ از همزیستی قارچ و جلبک تشکیل می‌شود.
+                قارچ مواد معدنی را برای جلبک فراهم می‌آورد و جلبک با انجام
+                فتوسنتز، کربوهیدرات‌های مورد نیاز خود و قارچ را فراهم می‌کند.
+            </p>
+
+
+            <h3>ویژگی گلسنگ</h3>
+
+            <ul>
+                <li>به هوای آلوده حساس است و از بین می‌رود.</li>
+                <li>سبب تشکیل خاک از سنگ می‌شود.</li>
+                <li>مواد رنگی و دارویی از آن استخراج می‌شود.</li>
+                <li>بخشی از غذای گوزن است.</li>
+            </ul>
+
+        </article>
+
+
+        <!-- شکار و رقابت -->
+
+        <article class="lesson">
+
+            <span class="lesson-number">صفحه 74</span>
+
+            <h2>🦁 شکار و شکارچی</h2>
+
+            <p>
+                شکار کردن از راه‌های تأمین غذا در جانوران گوشت‌خوار است.
+                بعضی از جانوران شکارچی به دنبال طعمه می‌دوند؛ اما جانوری
+                مانند شقایق دریایی در جای خود ثابت است و شکار می‌کند.
+            </p>
+
+
+            <h3>استتار</h3>
+
+            <p>
+                استتار سازوکاری است که شکار و شکارچی هر دو از آن بهره می‌گیرند.
+                جانور در جایی قرار می‌گیرد که تشخیص آن در محیط دشوار است
+                و از دید شکار و شکارچی مخفی می‌ماند.
+            </p>
+
+
+            <h3>🏃 رقابت</h3>
+
+            <p>
+                رقابت هنگامی اتفاق می‌افتد که جانداران نیازهای مشابهی داشته
+                باشند و نیازهای خود را از یک منبع به دست بیاورند.
+                معمولاً جانوران برای آب، غذا و محل زندگی رقابت می‌کنند.
+                گاهی رقابت چنان شدید می‌شود که دو جاندار با هم جنگ می‌کنند.
+            </p>
+
+        </article>
+
+
+        <!-- تنوع زیستی -->
+
+        <article class="lesson">
+
+            <span class="lesson-number">صفحه 75</span>
+
+            <h2>🌍 تنوع زیستی</h2>
+
+            <h3>تنوع زیستی</h3>
+
+            <p>
+                تنوع گونه‌های جانداران و محیطی است که جانداران در آن زندگی می‌کنند.
+            </p>
+
+
+            <h3>تنوع محیطی</h3>
+
+            <p>
+                فراهم شدن زیستگاه‌های مناسب برای زیست انواعی از جانداران است.
+            </p>
+
+
+            <h3>عواملی که باعث کاهش تنوع زیستی می‌شوند</h3>
+
+            <ol>
+                <li>یخ‌بندان</li>
+                <li>شهاب‌سنگ</li>
+                <li>فعالیت‌های انسانی</li>
+            </ol>
+
+
+            <h3>گونه منقرض‌شده</h3>
+
+            <p>
+                وقتی گونه‌ای منقرض می‌شود یعنی هیچ فرد زنده‌ای از آن گونه
+                در طبیعت وجود ندارد؛ مانند ببر مازندرانی.
+            </p>
+
+
+            <h3>اهمیت تنوع زیستی</h3>
+
+            <ul>
+                <li>
+                    کفشدوزک با خوردن آفت به کشاورزان کمک می‌کند.
+                </li>
+
+                <li>
+                    حشرات در گرده‌افشانی بسیاری از گیاهان نقش دارند.
+                </li>
+
+                <li>
+                    داروهای مختلفی ساخته می‌شود.
+                </li>
+            </ul>
+
+        </article>
+
+    </section>
+
+
+    <!-- صفحه کار و فناوری -->
+
+    <section id="technology" class="page">
+
+        <button class="back" onclick="goHome()">
+            ← بازگشت به صفحه اصلی
+        </button>
+
+        <div class="soon-page">
+
+            <div class="soon-box">
+
+                <div class="rocket">🚀</div>
+
+                <h1>SOON</h1>
+
+                <p>
+                    بخش کار و فناوری به‌زودی اضافه می‌شود...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- فوتر -->
+
+<footer>
+
+    <div class="creator">
+        سایت درست شده توسط
+    </div>
+
+    <span class="name">
+        حسین الهویی
+    </span>
+
+    <div class="signature">
+        Hossein Alhavi ✦
+    </div>
+
+</footer>
+
+
+<script>
+
+    function showPage(pageName) {
+
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        document.getElementById(pageName).classList.add("active");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+
+    function goHome() {
+
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+</script>
+
+</body>
+</html>
